@@ -29,6 +29,27 @@ a:hover {
     color: var(--link-hover-color);
 }
 
+/* outside */
+/* #speech-top {
+    z-index: 1;
+    display: block;
+    position: relative;
+    scale: .4;
+    margin-left: auto;
+    margin-right: auto;
+    transform-origin: 50% 50%;
+} */
+
+/* inside */
+#speech-top {
+    z-index: 1;
+    display: block;
+    position: absolute;
+    scale: .4;
+    transform-origin: 50% 50%;
+    transform: translateY(-190%);
+}
+
 #speech-frame {
     z-index: 1;
     display: block;
