@@ -1,0 +1,65 @@
+:root {
+    --background-color: #D8D1E5;
+    --text-color: #1E0F28;
+    --link-color: #6253A3;
+    --link-hover-color: #463C8C;
+    --speech-bubble-color: #FFFFFF;
+    --shadow-color: #B2A8C3;
+}
+
+@font-face {
+    font-family: talkFont;
+    src:url("/fonts/SLEEP.ttf");
+}
+
+body {
+    font-family: talkFont;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    overscroll-behavior: contain;
+}
+
+a:link, a:visited, a:active {
+    text-decoration: none;
+    color: var(--link-color);
+}
+
+a:hover {
+    text-decoration: none;
+    color: var(--link-hover-color);
+}
+
+#speech-frame {
+    z-index: 1;
+    display: block;
+    position: absolute; 
+    background: var(--speech-bubble-color);
+    top: 20%; bottom: 20%;
+    left: 25%; right: 25%;
+    border-radius: 25px;
+    padding: 20px;
+    box-shadow: 20px 20px 20px var(--shadow-color);
+}
+
+#wrapper
+{
+    position:absolute;  
+    top:0px;
+    left:0px;  
+}
+
+#canvas
+{
+    background-color:transparent; 
+    position:absolute;
+    z-index:1;
+}
+
+#shadowCanvas
+{
+    background-color:#f5fbff;
+    position:absolute;
+    top:0px;
+    left:0px;
+    z-index:0;
+}

@@ -1,0 +1,25 @@
+#speech-body {
+    font-size: 3em;
+    /* background: var(--speech-bubble-color); */
+    background-color: var(--link-hover-color);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    height: 100%; 
+    justify-content: space-between;
+}
+
+#speech-text {
+    background-color: var(--speech-bubble-color);
+}
+
+#speech-options {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--background-color);
+    margin-bottom: .5em;
+}
+
+#speech-options > a {
+    margin-top: .5em;
+}
