@@ -73,17 +73,20 @@ async function fillText(content)
         switch(node.nodeName) 
         {
             case '#text': 
-                const newText = node.nodeValue
+                let newText = node.nodeValue.trim()
+                if (!newText)
+                    continue
+
                 for (let c = 0; c < newText.length; c++) 
                 {
                     if (c > 0)
-                        await sleep(10)
+                        await wait(10)
                     text.append(newText[c])
                 }
                 break
             case 'BR': 
-                const linebreak = document.createElement("br");
-                text.appendChild(linebreak);
+                const linebreak = document.createElement("br")
+                text.appendChild(linebreak)
                 break
         }
     }
@@ -91,6 +94,16 @@ async function fillText(content)
     content.style = ""
     text.innerHTML = ""
     text.append(content)
+
+    async function wait(ms)
+    {
+        for (let i = 0; i < ms; i++) 
+        {
+            if (skip)
+                break 
+            await sleep(1)
+        }
+    }
 }
 
 function fillOptions(content)
