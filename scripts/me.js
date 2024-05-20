@@ -1,3 +1,10 @@
+const Anim = Object.freeze({ 
+    IDLE: 0,
+    TALK: 1,
+    PUKE: 2,
+}); 
+let curAnimation = Anim.IDLE
+
 var me =
 {
     x: 0,
@@ -24,6 +31,7 @@ var me =
         this.offsetX = lerp(this.offsetX, -this.offsetX, delta)
     },
     idle: function(delta) {
+        this.setMouth(false)
         if (this.t > 1)
         {
             this.moveRight = !this.moveRight
@@ -76,7 +84,14 @@ loadImage("imgs/mebottom.png").then(img => me.bottom = img)
 addEventListener("render", args => me.render(args.context, width/2, 10))
 addEventListener("rendershadow", args => me.render(args.context, width/2, 10))
 addEventListener("update", args => animate(args.delta))
+addEventListener("startwrite", args => curAnimation = Anim.TALK)
+addEventListener("endwrite", args => curAnimation = Anim.IDLE)
 
 function animate(delta) {
-    me.idle(delta)
+    switch (curAnimation) {
+        case Anim.IDLE: me.idle(delta); break
+        case Anim.TALK: me.talk(delta); break
+        case Anim.PUKE: me.puke(delta); break
+        default: console.error("no animation for: " + curAnimation); break
+    }
 }

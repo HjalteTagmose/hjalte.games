@@ -1,3 +1,6 @@
+let onstartwrite = new CustomEvent("startwrite")
+let onendwrite = new CustomEvent("endwrite")
+
 var iframe
 var text
 var options 
@@ -49,6 +52,7 @@ async function write(id)
 {
     skip = false
     isWriting = true
+    dispatchEvent(onstartwrite)
     clear() 
 
     let div = iframe.contentWindow.document.getElementById(id)
@@ -58,6 +62,7 @@ async function write(id)
     fillOptions(content)
     await fillText(content)
     showOptions(true)
+    dispatchEvent(onendwrite)
     isWriting = false
 }
 
