@@ -1,8 +1,8 @@
 // CANVAS
 var canvas  = document.getElementById("canvas")
 var context = canvas.getContext("2d")
-var width   = canvas.width  = window.innerWidth  - 8
-var height  = canvas.height = window.innerHeight - 8
+var width   = canvas.width  = window.innerWidth - 0
+var height  = canvas.height = window.innerHeight - 0
 
 // SHADOWS
 var shadowColor = getComputedStyle(document.documentElement).getPropertyValue('--shadow-color')
@@ -12,6 +12,9 @@ var shadowContext = shadowCanvas.getContext("2d")
 shadowCanvas.width = width
 shadowCanvas.height = height
 
+
+let onrender = new CustomEvent("render", { 'context': context })
+let onrendershadow = new CustomEvent("rendershadow", { 'context': shadowContext })
 addEventListener("update", args => render())
 
 function render()
@@ -26,16 +29,13 @@ function render()
     shadowContext.shadowOffsetX = 20
     shadowContext.shadowOffsetY = 20
     
-    // GAMEHOLE
-    var xxx = width/2
-    shadowContext.restore()
-    shadowContext.save()
-    shadowContext.shadowColor = "transparent"
-    // gameHole.animate(deltaTime)
-    // gameHole.render(shadowContext, xxx, 10)
-    // shadowContext.drawImage( logo, bgX, bgY, bgW, bgH)
-    shadowContext.restore()
+    // EVENTS
+    onrender.context = context
+    onrendershadow.context = shadowContext
+    dispatchEvent(onrender)
+    dispatchEvent(onrendershadow)
 
+    // GAMES
     for (let i = 0; i < boxes.length; i++)
     {
         var b = boxes[i],
@@ -47,14 +47,11 @@ function render()
 
         if (b.hidden) continue
 
-        if (!b.noShadow)
-        {
-            shadowContext.save()
-            shadowContext.translate(b.path[0].x, b.path[0].y)
-            shadowContext.rotate(angle)
-            shadowContext.fillRect(4, 4, w-8, h-8)
-            shadowContext.restore()
-        }
+        shadowContext.save()
+        shadowContext.translate(b.path[0].x, b.path[0].y)
+        shadowContext.rotate(angle)
+        shadowContext.fillRect(4, 4, w-8, h-8)
+        shadowContext.restore()
 
         context.save()
         context.translate(b.path[0].x, b.path[0].y)

@@ -11,7 +11,6 @@ function init()
 
 function select(e)
 {
-    e = e ||  window.event;
     var element = e.target || e.srcElement;
 
     if(element.tagName != 'A')

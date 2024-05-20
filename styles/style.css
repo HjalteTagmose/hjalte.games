@@ -17,6 +17,7 @@ body {
     color: var(--text-color);
     background-color: var(--background-color);
     overscroll-behavior: contain;
+    overflow: hidden; 
 }
 
 a:link, a:visited, a:active {

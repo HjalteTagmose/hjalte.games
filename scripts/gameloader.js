@@ -5,8 +5,8 @@ $.getJSON("games.json", function(data) {
 async function parseJSON(data) {
     var i = 0;
     data.boxes.forEach(async game => {
-        var size = (game.size ?? 100) * data.sizeMultiplier;
-        var rnd = Math.random() * 30 - 15;
+        var size = (game.size ?? 100) * data.sizeMultiplier
+        var rnd = Math.random() * 30 - 15
         var pos = 
         {
             x: (size*150) * i % window.innerWidth - 500, 
@@ -14,12 +14,17 @@ async function parseJSON(data) {
         }
         var box = createBox(
             pos.x, pos.y, size, rnd
-        ); 
-        i++;
+        )
+        i++
         
-        await loadImage(game.imgPath).then(img => game.img = img);
-        box.game = game;
-        box.hidden = true;
+        await loadImage(game.imgPath).then(img => game.img = img)
+        box.game = game
+        box.hidden = true
         pinBox(box, true)
+        
+        // test show
+        // box.hidden = false
+        // pinBox(box, false)
+        // console.log("puke: "+box.game.name)
     });
 }
