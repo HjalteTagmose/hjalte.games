@@ -45,3 +45,12 @@ function vecdir(fromX, fromY, toX, toY) {
     let len = veclen(x, y);
     return vecnorm(x, y)
 }
+
+function pinBox(box, pin)
+{
+    if (box == null) return;
+    box.path[0].pinned = pin;
+    box.path[1].pinned = pin;
+    box.path[2].pinned = pin;
+    box.path[3].pinned = pin;
+}

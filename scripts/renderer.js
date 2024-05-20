@@ -22,19 +22,17 @@ function render()
     // SHADOWS
     shadowContext.shadowColor = shadowColor
     shadowContext.fillStyle = shadowFill
-    shadowContext.shadowBlur = 20
+    shadowContext.shadowBlur = 16
     shadowContext.shadowOffsetX = 20
     shadowContext.shadowOffsetY = 20
     
-    return
-
     // GAMEHOLE
     var xxx = width/2
     shadowContext.restore()
     shadowContext.save()
-    // shadowContext.shadowColor = "transparent"
-    gameHole.animate(deltaTime)
-    gameHole.render(shadowContext, xxx, 10)
+    shadowContext.shadowColor = "transparent"
+    // gameHole.animate(deltaTime)
+    // gameHole.render(shadowContext, xxx, 10)
     // shadowContext.drawImage( logo, bgX, bgY, bgW, bgH)
     shadowContext.restore()
 
