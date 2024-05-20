@@ -1,24 +1,34 @@
-var text = document.getElementById("speech-text")
-var options = document.getElementById("speech-options")
+var iframe
+var text
+var options 
 
 var curWrite
 var isWriting = false
 var skip = false
 
-window.onload = init
-document.onclick = function(e) {
+jQuery(document).ready(function() {
+    setTimeout(init, 500);
+});
+
+function init() 
+{
+    iframe  = $('#speechbubble').get(0)
+    text    = iframe.contentWindow.document.getElementById("speech-text")
+    options = iframe.contentWindow.document.getElementById("speech-options")
+    
+    iframe.contentWindow.document.onclick = onclick
+    curWrite = write("intro")
+}
+
+function onclick(e)
+{
     if (isWriting)
-    {
+    {  
         skip = true
         return false
     }
 
     return select(e)
-}
-
-function init() 
-{
-    curWrite = write("intro")
 }
 
 function select(e)
@@ -39,13 +49,15 @@ async function write(id)
 {
     skip = false
     isWriting = true
-    clear()
+    clear() 
 
-    let div = document.getElementById(id)
+    let div = iframe.contentWindow.document.getElementById(id)
     let content = div.cloneNode(true)
     
+    showOptions(false)
     fillOptions(content)
     await fillText(content)
+    showOptions(true)
     isWriting = false
 }
 
@@ -64,8 +76,9 @@ async function fillText(content)
                 const newText = node.nodeValue
                 for (let c = 0; c < newText.length; c++) 
                 {
+                    if (c > 0)
+                        await sleep(10)
                     text.append(newText[c])
-                    await sleep(10)
                 }
                 break
             case 'BR': 
@@ -85,7 +98,8 @@ function fillOptions(content)
     let links = content.getElementsByTagName('a');
     let linkCount = links.length
 
-    for (var i = 0; i < linkCount; i++) {
+    for (var i = 0; i < linkCount; i++) 
+    {
         let link = links[0]
         options.append(link)
     }
@@ -95,4 +109,9 @@ function clear()
 {
     text.innerHTML = ""
     options.innerHTML = ""
+}
+
+function showOptions(on)
+{
+    options.style = on ? "" : "display: none;";
 }
