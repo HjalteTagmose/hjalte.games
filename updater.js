@@ -1,7 +1,7 @@
-let onupdate = new CustomEvent("update", { 'delta': 0.0 });
+let onupdate = new CustomEvent("update", { 'delta': 0.0 })
 
-var d = new Date();
-const startTime = d.getTime();
+var d = new Date()
+const startTime = d.getTime()
 var lastTime  = startTime
 var curTime   = startTime
 

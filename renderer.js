@@ -12,11 +12,10 @@ var shadowContext = shadowCanvas.getContext("2d")
 shadowCanvas.width = width
 shadowCanvas.height = height
 
-addEventListener("update", args => render(args.delta))
+addEventListener("update", args => render())
 
-function render(delta)
+function render()
 {
-    console.log(delta)
     context.clearRect(0, 0, width, height)
     shadowContext.clearRect(0, 0, width,height)
            
@@ -46,48 +45,48 @@ function render(delta)
             h = distance(b.path[0], b.path[3]),
             dx = b.path[2].x - b.path[0].x, //old: p1 - p0
             dy = b.path[2].y - b.path[0].y,
-            angle = Math.atan2(dy, dx) - 0.8; //ugly but works?
+            angle = Math.atan2(dy, dx) - 0.8 //ugly but works?
 
         if (b.hidden) continue
 
         if (!b.noShadow)
         {
-            shadowContext.save();
-            shadowContext.translate(b.path[0].x, b.path[0].y);
-            shadowContext.rotate(angle);
-            shadowContext.fillRect(4, 4, w-8, h-8);
-            shadowContext.restore();
+            shadowContext.save()
+            shadowContext.translate(b.path[0].x, b.path[0].y)
+            shadowContext.rotate(angle)
+            shadowContext.fillRect(4, 4, w-8, h-8)
+            shadowContext.restore()
         }
 
-        context.save();
-        context.translate(b.path[0].x, b.path[0].y);
-        context.rotate(angle);
-        context.drawImage(b.game.img, 0, 0, w, h);
+        context.save()
+        context.translate(b.path[0].x, b.path[0].y)
+        context.rotate(angle)
+        context.drawImage(b.game.img, 0, 0, w, h)
         if (b.game.puke > 0)
         {
-            b.game.puke -= 0.005;
-            context.fillStyle = 'rgba(189, 224, 101,' + (b.game.puke) + ')';
-            context.fillRect(0,0,w,h);
+            b.game.puke -= 0.005
+            context.fillStyle = 'rgba(189, 224, 101,' + (b.game.puke) + ')'
+            context.fillRect(0,0,w,h)
         }
-        context.restore();
+        context.restore()
         
-        // renderDebug(b);
+        // renderDebug(b)
     }
 }
 
 function renderDebug(b)
 {
-    context.strokeStyle = "red";
-    context.lineWidth = 5;
-    context.beginPath();
-    context.moveTo(b.path[3].x, b.path[3].y);
-    context.lineTo(b.path[0].x, b.path[0].y);
-    context.stroke();
-    context.beginPath();
-    context.moveTo(b.path[0].x, b.path[0].y);
-    context.lineTo(b.path[1].x, b.path[1].y);
-    context.strokeStyle = "blue";
-    context.stroke();
-    context.fillStyle="magenta";
-    context.fillRect(b.center.x, b.center.y, 15,15);
+    context.strokeStyle = "red"
+    context.lineWidth = 5
+    context.beginPath()
+    context.moveTo(b.path[3].x, b.path[3].y)
+    context.lineTo(b.path[0].x, b.path[0].y)
+    context.stroke()
+    context.beginPath()
+    context.moveTo(b.path[0].x, b.path[0].y)
+    context.lineTo(b.path[1].x, b.path[1].y)
+    context.strokeStyle = "blue"
+    context.stroke()
+    context.fillStyle="magenta"
+    context.fillRect(b.center.x, b.center.y, 15,15)
 }

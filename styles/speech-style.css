@@ -4,8 +4,7 @@ html {
 
 #speech-body {
     font-size: 3em;
-    /* background: var(--speech-bubble-color); */
-    background-color: var(--link-hover-color);
+    background: var(--speech-bubble-color);
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -20,7 +19,7 @@ html {
 #speech-options {
     display: flex;
     flex-direction: column;
-    background-color: var(--background-color);
+    background-color: var(--speech-bubble-color);
 }
 
 #speech-options > a {
