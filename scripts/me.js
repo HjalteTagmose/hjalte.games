@@ -95,3 +95,28 @@ function animate(delta) {
         default: console.error("no animation for: " + curAnimation); break
     }
 }
+
+
+
+// TEST PUKE
+let pukes = 0
+let pukeDelay = 150
+addEventListener("mousedown", _ => puke())
+async function puke()
+{
+    for (let i = 0; i < boxes.length; i++)
+    {
+        var box = boxes[i];
+        if (box.hidden)
+        {
+            setBoxPos(box, me.x+100, me.y+150)
+            box.hidden = false
+            pinBox(box, false)
+            box.game.puke = 1
+            console.log("puke: "+ box.game.name)
+            await sleep(pukeDelay)
+            // if (pukes % 3 === 0) playSound('puke')
+            pukes++
+        }
+    }
+}

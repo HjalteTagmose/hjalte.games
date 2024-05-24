@@ -312,6 +312,7 @@ function distance(p0, p1)
     return Math.sqrt(dx * dx + dy * dy)
 }
 
+// HELPERS
 function createBox(x,y,size,vel)
 {
     // CORNERS
@@ -389,4 +390,28 @@ function createBox(x,y,size,vel)
     boxes.push(box)
 
     return box
+}
+function setBoxPos(box, x, y)
+{
+    box.x = x
+    box.y = y
+    box.path.forEach(p => {
+        p.oldx = p.x;
+        p.oldy = p.y;
+    });
+    box.path[0].x = box.path[0].oldx = x - box.size/2;
+    box.path[0].y = box.path[0].oldy = y - box.size/2;
+    box.path[1].x = box.path[1].oldx = x + box.size/2;
+    box.path[1].y = box.path[1].oldy = y - box.size/2;
+    box.path[2].x = box.path[2].oldx = x + box.size/2;
+    box.path[2].y = box.path[2].oldy = y + box.size/2;
+    box.path[3].x = box.path[3].oldx = x - box.size/2;
+    box.path[3].y = box.path[3].oldy = y + box.size/2;
+}
+function pinBox(box, pin)
+{
+    box.path[0].pinned = pin;
+    box.path[1].pinned = pin;
+    box.path[2].pinned = pin;
+    box.path[3].pinned = pin;
 }
