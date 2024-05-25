@@ -46,7 +46,7 @@ a:hover {
     background: var(--speech-bubble-color);
     top: 20%; bottom: 20%;
     left: 25%; right: 25%;
-    border-radius: 25px;
+    border-radius: 15px;
     padding: 20px;
     box-shadow: 20px 20px 20px var(--shadow-color);
 }

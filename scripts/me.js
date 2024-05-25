@@ -20,6 +20,7 @@ var me =
     moveSpeed: .5,
     talkSpeed: 150,
 
+    //#region Animations
     render: function(context, x, y) {
         mid = this.width/2
         this.x = x-this.offsetX-mid
@@ -76,6 +77,15 @@ var me =
         this.mouthOpen = open
         this.mouthPos = open ? 20 : 0  
     },
+    //#endregion
+
+    contains: function(x, y)
+    {
+        return  x < this.width  + this.x && 
+                y < this.height + this.y &&
+                x > this.x && 
+                y > this.y 
+    }
 }
 
 loadImage("imgs/metop.png").then(img => me.top = img)

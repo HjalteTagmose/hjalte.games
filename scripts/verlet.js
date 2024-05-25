@@ -391,6 +391,13 @@ function createBox(x,y,size,vel)
 
     return box
 }
+function pinBox(box, pin)
+{
+    box.path[0].pinned = pin;
+    box.path[1].pinned = pin;
+    box.path[2].pinned = pin;
+    box.path[3].pinned = pin;
+}
 function setBoxPos(box, x, y)
 {
     box.x = x
@@ -408,10 +415,26 @@ function setBoxPos(box, x, y)
     box.path[3].x = box.path[3].oldx = x - box.size/2;
     box.path[3].y = box.path[3].oldy = y + box.size/2;
 }
-function pinBox(box, pin)
+function moveBox(box, x, y)
 {
-    box.path[0].pinned = pin;
-    box.path[1].pinned = pin;
-    box.path[2].pinned = pin;
-    box.path[3].pinned = pin;
+    box.x = x
+    box.y = y
+    pinBox(box, true);
+    box.path.forEach(p => {
+        p.oldx = p.x;
+        p.oldy = p.y;
+    });
+    box.path[0].x = x - box.size/2;
+    box.path[0].y = y - box.size/2;
+    box.path[1].x = x + box.size/2;
+    box.path[1].y = y - box.size/2;
+    box.path[2].x = x + box.size/2;
+    box.path[2].y = y + box.size/2;
+    box.path[3].x = x - box.size/2;
+    box.path[3].y = y + box.size/2;
+}
+function contains(box, x, y)
+{
+    return  box.min.x < x && x < box.max.x &&
+            box.min.y < y && y < box.max.y;
 }

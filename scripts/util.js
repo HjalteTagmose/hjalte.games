@@ -1,6 +1,7 @@
 async function loadImage(url) 
 {
     var img = document.createElement("img");
+    img.style = "border-radius: 15px;"
     img.src = url;
     return img;
 }
