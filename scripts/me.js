@@ -107,11 +107,16 @@ function animate(delta) {
 }
 
 
-
+//#region TEST
+let gamesClear = true
+addEventListener("mousedown", _ => {
+    if (gamesClear) puke()
+    else clearBoxes()
+    gamesClear = !gamesClear
+})
 // TEST PUKE
 let pukes = 0
 let pukeDelay = 150
-addEventListener("mousedown", _ => puke())
 async function puke()
 {
     for (let i = 0; i < boxes.length; i++)
@@ -130,3 +135,17 @@ async function puke()
         }
     }
 }
+// TEST CLEAR
+async function clearBoxes() 
+{
+    floorOffset = 50000
+    await sleep(1200)
+    floorOffset = 0 
+    for (let i = 0; i < boxes.length; i++)
+    {
+        var b = boxes[i];
+        b.hidden = true
+        pinBox(b, true)
+    }
+}
+//#endregion
