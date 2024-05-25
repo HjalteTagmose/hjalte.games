@@ -64,10 +64,9 @@ function stopDrag()
 
 function click(e)
 {
-    console.log("click")
-    if (e.detail != 1 || heldBox != null)
+    if (e.detail != 1)
         return
 
     if (me.contains(mousePos.x, mousePos.y))
-        alert("cliced me")
+        toggleSpeech()
 }
