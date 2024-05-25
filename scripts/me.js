@@ -7,18 +7,21 @@ let curAnimation = Anim.IDLE
 
 var me =
 {
+    //#region Variables
     x: 0,
     y: 0,
     offsetX: 0,
     offsetY: 0,
     width: 200,
     height: 200,
+    margin: 40,
     
     t: 0,
     mouthPos: 0,
     mouthOpen: false,
     moveSpeed: .5,
     talkSpeed: 150,
+    //#endregion
 
     //#region Animations
     render: function(context, x, y) {
@@ -81,10 +84,10 @@ var me =
 
     contains: function(x, y)
     {
-        return  x < this.width  + this.x && 
-                y < this.height + this.y &&
-                x > this.x && 
-                y > this.y 
+        return  x < this.width  + this.x + this.margin && 
+                y < this.height + this.y + this.margin &&
+                x > this.x - this.margin && 
+                y > this.y - this.margin 
     }
 }
 
@@ -109,11 +112,11 @@ function animate(delta) {
 
 //#region TEST
 let gamesClear = true
-addEventListener("mousedown", _ => {
-    if (gamesClear) puke()
-    else clearBoxes()
-    gamesClear = !gamesClear
-})
+// addEventListener("mousedown", _ => {
+//     if (gamesClear) puke()
+//     else clearBoxes()
+//     gamesClear = !gamesClear
+// })
 // TEST PUKE
 let pukes = 0
 let pukeDelay = 150
