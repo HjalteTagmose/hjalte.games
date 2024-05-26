@@ -51,6 +51,18 @@ a:hover {
     box-shadow: 20px 20px 20px var(--shadow-color);
 }
 
+#showcase-frame {
+    z-index: 2;
+    display: block;
+    position: absolute; 
+    background: var(--speech-bubble-color);
+    top: 10%; bottom: 10%;
+    left: 25%; right: 25%;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 20px 20px 20px var(--shadow-color);
+}
+
 #wrapper
 {
     position:absolute;  

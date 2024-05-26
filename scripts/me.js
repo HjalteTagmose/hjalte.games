@@ -109,7 +109,6 @@ function animate(delta) {
     }
 }
 
-
 //#region TEST
 let gamesClear = true
 // addEventListener("mousedown", _ => {
@@ -118,25 +117,35 @@ let gamesClear = true
 //     gamesClear = !gamesClear
 // })
 // TEST PUKE
+let puked = false
+addEventListener("mousedown", _ => { 
+    if (!puked)
+        puke(boxes[1])
+    puked = true;
+})
 let pukes = 0
 let pukeDelay = 150
-async function puke()
+async function pukeAll()
 {
     for (let i = 0; i < boxes.length; i++)
     {
         var box = boxes[i];
         if (box.hidden)
         {
-            setBoxPos(box, me.x+100, me.y+150)
-            box.hidden = false
-            pinBox(box, false)
-            box.game.puke = 1
-            console.log("puke: "+ box.game.name)
+            puke(box)
             await sleep(pukeDelay)
             // if (pukes % 3 === 0) playSound('puke')
             pukes++
         }
     }
+}
+function puke(box)
+{
+    setBoxPos(box, me.x+100, me.y+150)
+    box.hidden = false
+    pinBox(box, false)
+    box.game.puke = 1
+    console.log("puke: "+ box.game.name)
 }
 // TEST CLEAR
 async function clearBoxes() 

@@ -1,32 +1,17 @@
-var speechBubble = document.getElementById("speech-frame");
-var speechOn = true
+var showcase = document.getElementById("showcase-frame");
 var showcasing = false
 
-function toggleSpeech() 
-{
-    if (showcasing)
-        return
-    
-    speechOn = !speechOn
-    if (speechOn) 
-        showSpeech()
-    else 
-        hideSpeech()
-}
-function showSpeech() 
-{
-    speechOn = true
-    speechBubble.style = "display: block;"
-}
-function hideSpeech() 
-{
-    speechOn = false
-    speechBubble.style = "display: none;"
-}
+hideGame()
 
 function showGame(game)
 {
-    alert("SHOW GAME: " + game.name)
+    // alert("SHOW GAME: " + game.name)
     hideSpeech()
+    showcase.style = "display: block;"
     showcasing = true
+}
+
+function hideGame()
+{
+    showcase.style = "display: none;"
 }
