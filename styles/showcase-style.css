@@ -1,0 +1,16 @@
+html {
+    height: 98%;
+}
+
+#showcase-body {
+    font-size: 3em;
+    background: var(--speech-bubble-color);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    height: 100%; 
+}
+
+#showcase-title {
+    background-color: var(--speech-bubble-color);
+}

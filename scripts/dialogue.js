@@ -10,18 +10,13 @@ var isWriting = false
 var skip = false
 
 jQuery(document).ready(function() {
-    setTimeout(init, 500);
-});
-
-function init() 
-{
     iframe  = $('#speechbubble').get(0)
     text    = iframe.contentWindow.document.getElementById("speech-text")
     options = iframe.contentWindow.document.getElementById("speech-options")
     
     iframe.contentWindow.document.onclick = onclick
     curWrite = write("intro")
-}
+});
 
 function onclick(e)
 {
@@ -58,10 +53,8 @@ async function write(id)
     let div = iframe.contentWindow.document.getElementById(id)
     let content = div.cloneNode(true)
     
-    showOptions(false)
-    fillOptions(content)
     await fillText(content)
-    showOptions(true)
+    fillOptions(content)
     dispatchEvent(onendwrite)
     isWriting = false
 }
@@ -127,9 +120,4 @@ function clear()
 {
     text.innerHTML = ""
     options.innerHTML = ""
-}
-
-function showOptions(on)
-{
-    options.style = on ? "" : "display: none;";
 }
