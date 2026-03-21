@@ -9,6 +9,7 @@ body {
 }
 
 #showcase-body {
+    overflow-y:auto;
     font-size: 3em;
     background: var(--speech-bubble-color);
     text-align: center;
@@ -26,10 +27,20 @@ body {
 }
 
 #showcase-head {
-    padding: 30px 30px;
     display: flex;
     align-items: flex-start;
     background-color: var(--showcase-head-color);
+}
+
+#showcase-top {
+    font-family: infoFont;
+    padding: 30px 30px 10px 30px;
+    background-color: var(--showcase-head-color);
+}
+
+#showcase-tags {
+    font-size: .5em;
+    margin-top: 10px;
 }
 
 #showcase-thumbnail {
@@ -40,7 +51,6 @@ body {
 }
 
 #showcase-head-meta {
-    font-family: infoFont;
     padding: 0px 0px 0px 20px;
     text-align: left;
     display: flex;
@@ -58,6 +68,26 @@ body {
     aspect-ratio: 1;
     object-fit: contain;
     transform: translateY(10px);
+}
+
+#showcase-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35em;
+    margin: 0.5em 0 0.2em;
+}
+
+.showcase-tag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.4em 0.6em;
+    background: var(--showcase-head-meta-color);
+    color: var(--background-color);
+    border-radius: 999px;
+    font-size: 0.68em;
+    line-height: 1;
+    white-space: nowrap;
 }
 
 #showcase-description {

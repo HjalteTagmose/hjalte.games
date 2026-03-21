@@ -3,7 +3,7 @@ html {
 }
 
 #speech-body {
-    overflow-y: scroll;
+    overflow-y:auto;
     font-size: 3em;
     background: var(--speech-bubble-color);
     text-align: center;

@@ -12,6 +12,7 @@ var teamSize
 var duration
 var tools
 var description
+var tagsContainer
 var linksContainer
 
 hideGame()
@@ -31,6 +32,7 @@ jQuery(document).ready(function() {
         duration = showcaseDoc.getElementById("showcase-duration")
         tools = showcaseDoc.getElementById("showcase-tools")
         description = showcaseDoc.getElementById("showcase-description")
+        tagsContainer = showcaseDoc.getElementById("showcase-tags")
         linksContainer = showcaseDoc.getElementById("showcase-links")
         return true
     }
@@ -60,6 +62,10 @@ function clearShowcase()
     if (duration) duration.innerText = ""
     if (tools) tools.innerText = ""
     if (description) description.innerText = ""
+    if (tagsContainer) {
+        tagsContainer.innerText = ""
+        tagsContainer.style.display = "none"
+    }
     if (linksContainer) {
         linksContainer.innerHTML = ""
         linksContainer.style.display = "none"
@@ -116,6 +122,21 @@ function fillShowcase(game)
     var descriptionText = game.description || game.summary || ""
     if (description) description.innerText = descriptionText
     description.style.display = descriptionText ? "block" : "none"
+
+    if (tagsContainer) {
+        tagsContainer.innerHTML = ''
+        if (Array.isArray(game.tags) && game.tags.length > 0) {
+            game.tags.forEach(tag => {
+                var spanTag = showcaseDoc.createElement('span')
+                spanTag.className = 'showcase-tag'
+                spanTag.innerText = tag
+                tagsContainer.appendChild(spanTag)
+            })
+            tagsContainer.style.display = 'flex'
+        } else {
+            tagsContainer.style.display = 'none'
+        }
+    }
 
     linksContainer.innerHTML = ""
     var linkItems = []
