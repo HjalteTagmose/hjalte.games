@@ -121,8 +121,6 @@ function fillShowcase(game)
     var linkItems = []
     if (Array.isArray(game.links) && game.links.length > 0) {
         linkItems = game.links
-    } else if (game.link) {
-        linkItems = [{ text: "Game Link", url: game.link }]
     }
 
     if (linkItems.length === 0) {
