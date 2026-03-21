@@ -5,6 +5,8 @@
     --link-hover-color: #463C8C;
     --speech-bubble-color: #FFFFFF;
     --shadow-color: #B2A8C3;
+    --showcase-head-color: #B8ABD4;
+    --showcase-head-meta-color: #655699;
 }
 
 @font-face {
@@ -59,7 +61,7 @@ a:hover {
     top: 10%; bottom: 10%;
     left: 25%; right: 25%;
     border-radius: 15px;
-    padding: 20px;
+    padding: 0px;
     box-shadow: 20px 20px 20px var(--shadow-color);
 }
 

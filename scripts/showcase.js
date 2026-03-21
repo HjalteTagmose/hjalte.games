@@ -2,7 +2,6 @@ var showcasing = false
 var showcaseFrame = document.getElementById("showcase-frame");
 var showcase
 var showcaseDoc
-var title
 var thumbnail
 var rowRole
 var rowTeam
@@ -26,7 +25,6 @@ jQuery(document).ready(function() {
     function grabElements() {
         if (!showcase || !showcase.contentWindow || !showcase.contentWindow.document) return false
         showcaseDoc = showcase.contentWindow.document
-        title = showcaseDoc.getElementById("showcase-title")
         thumbnail = showcaseDoc.getElementById("showcase-thumbnail")
         rowRole = showcaseDoc.getElementById("showcase-row-role")
         rowTeam = showcaseDoc.getElementById("showcase-row-team")
@@ -57,8 +55,6 @@ jQuery(document).ready(function() {
 
 function clearShowcase()
 {
-    if (!title) return
-    title.innerText = ""
     if (thumbnail) {
         thumbnail.src = ""
         thumbnail.style.display = "none"
@@ -99,10 +95,8 @@ function hideGame()
 
 function fillShowcase(game)
 {
-    if (!game || !title) 
+    if (!game) 
         return
-
-    title.innerText = game.name || "Untitled"
 
     if (thumbnail) {
         if (game.imgPath) {
