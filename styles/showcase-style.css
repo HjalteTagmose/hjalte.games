@@ -41,7 +41,7 @@ body {
 
 #showcase-head-meta {
     font-family: infoFont;
-    padding: 0px 0px 0px 30px;
+    padding: 0px 0px 0px 20px;
     text-align: left;
     display: flex;
     flex-direction: column;
@@ -54,9 +54,10 @@ body {
 }
 
 .showcase-meta-icon {
-    width: 20px;
+    width: 40px;
     aspect-ratio: 1;
     object-fit: contain;
+    transform: translateY(10px);
 }
 
 #showcase-description {

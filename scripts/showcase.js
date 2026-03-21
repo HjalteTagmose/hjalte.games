@@ -7,14 +7,10 @@ var rowRole
 var rowTeam
 var rowDuration
 var rowTools
-var rowPlatforms
-var rowTags
 var role
 var teamSize
 var duration
 var tools
-var platforms
-var tags
 var description
 var linksContainer
 
@@ -30,14 +26,10 @@ jQuery(document).ready(function() {
         rowTeam = showcaseDoc.getElementById("showcase-row-team")
         rowDuration = showcaseDoc.getElementById("showcase-row-duration")
         rowTools = showcaseDoc.getElementById("showcase-row-tools")
-        rowPlatforms = showcaseDoc.getElementById("showcase-row-platforms")
-        rowTags = showcaseDoc.getElementById("showcase-row-tags")
         role = showcaseDoc.getElementById("showcase-role")
         teamSize = showcaseDoc.getElementById("showcase-team-size")
         duration = showcaseDoc.getElementById("showcase-duration")
         tools = showcaseDoc.getElementById("showcase-tools")
-        platforms = showcaseDoc.getElementById("showcase-platforms")
-        tags = showcaseDoc.getElementById("showcase-tags")
         description = showcaseDoc.getElementById("showcase-description")
         linksContainer = showcaseDoc.getElementById("showcase-links")
         return true
@@ -63,14 +55,10 @@ function clearShowcase()
     if (rowTeam) rowTeam.style.display = "none"
     if (rowDuration) rowDuration.style.display = "none"
     if (rowTools) rowTools.style.display = "none"
-    if (rowPlatforms) rowPlatforms.style.display = "none"
-    if (rowTags) rowTags.style.display = "none"
     if (role) role.innerText = ""
     if (teamSize) teamSize.innerText = ""
     if (duration) duration.innerText = ""
     if (tools) tools.innerText = ""
-    if (platforms) platforms.innerText = ""
-    if (tags) tags.innerText = ""
     if (description) description.innerText = ""
     if (linksContainer) {
         linksContainer.innerHTML = ""
@@ -117,21 +105,13 @@ function fillShowcase(game)
     if (teamSize) teamSize.innerText = hasTeam ? game.teamSize : ""
     if (rowTeam) rowTeam.style.display = hasTeam ? "block" : "none"
 
-    var durationText = game.duration || game.date || ""
+    var durationText = game.duration || ""
     if (duration) duration.innerText = durationText
     if (rowDuration) rowDuration.style.display = durationText ? "block" : "none"
 
     var toolsText = Array.isArray(game.tools) ? game.tools.join(', ') : (game.tools || game.engine || "")
     if (tools) tools.innerText = toolsText
     if (rowTools) rowTools.style.display = toolsText ? "block" : "none"
-
-    var platformsText = Array.isArray(game.platforms) ? game.platforms.join(', ') : (game.platforms || "")
-    if (platforms) platforms.innerText = platformsText
-    if (rowPlatforms) rowPlatforms.style.display = platformsText ? "block" : "none"
-
-    var tagsText = Array.isArray(game.tags) ? game.tags.filter(t => t.toLowerCase() !== 'all').join(', ') : (game.tags || "")
-    if (tags) tags.innerText = tagsText
-    if (rowTags) rowTags.style.display = tagsText ? "block" : "none"
 
     var descriptionText = game.description || game.summary || ""
     if (description) description.innerText = descriptionText
