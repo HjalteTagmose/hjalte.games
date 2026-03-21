@@ -1,6 +1,7 @@
 var showcasing = false
 var showcaseFrame = document.getElementById("showcase-frame");
 var showcase
+var showcaseCloseButton
 var showcaseDoc
 var thumbnail
 var rowRole
@@ -20,7 +21,9 @@ jQuery(document).ready(function() {
     showcase = $('#showcase').get(0)
 
     function grabElements() {
-        if (!showcase || !showcase.contentWindow || !showcase.contentWindow.document) return false
+        if (!showcase || !showcase.contentWindow || !showcase.contentWindow.document) 
+            return false
+
         showcaseDoc = showcase.contentWindow.document
         thumbnail = showcaseDoc.getElementById("showcase-thumbnail")
         rowRole = showcaseDoc.getElementById("showcase-row-role")
@@ -34,6 +37,12 @@ jQuery(document).ready(function() {
         description = showcaseDoc.getElementById("showcase-description")
         tagsContainer = showcaseDoc.getElementById("showcase-tags")
         linksContainer = showcaseDoc.getElementById("showcase-links")
+        showcaseCloseButton = showcaseDoc.getElementById('showcase-close-btn')
+    
+        showcaseCloseButton.addEventListener('click', function() {
+            hideGame()
+        });
+
         return true
     }
 
@@ -46,6 +55,7 @@ jQuery(document).ready(function() {
         clearShowcase()
     }
 })
+
 
 function clearShowcase()
 {
