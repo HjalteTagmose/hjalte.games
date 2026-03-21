@@ -26,10 +26,10 @@ body {
 }
 
 #showcase-head {
-    padding: 30px;
+    padding: 30px 30px;
     display: flex;
     align-items: flex-start;
-    background-color: var(--background-secondary-color);
+    background-color: var(--showcase-head-color);
 }
 
 #showcase-thumbnail {
@@ -40,6 +40,7 @@ body {
 }
 
 #showcase-head-meta {
+    font-family: infoFont;
     padding: 0px 0px 0px 30px;
     text-align: left;
     display: flex;
@@ -47,8 +48,15 @@ body {
 }
 
 .showcase-meta-row {
-    font-size: 0.75em;
+    font-size: 0.6em;
     color: var(--showcase-head-meta-color);
+    display: flex;
+}
+
+.showcase-meta-icon {
+    width: 20px;
+    aspect-ratio: 1;
+    object-fit: contain;
 }
 
 #showcase-description {

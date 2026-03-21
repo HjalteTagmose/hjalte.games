@@ -6,13 +6,13 @@ var thumbnail
 var rowRole
 var rowTeam
 var rowDuration
-var rowTechnology
+var rowTools
 var rowPlatforms
 var rowTags
 var role
 var teamSize
 var duration
-var technology
+var tools
 var platforms
 var tags
 var description
@@ -29,13 +29,13 @@ jQuery(document).ready(function() {
         rowRole = showcaseDoc.getElementById("showcase-row-role")
         rowTeam = showcaseDoc.getElementById("showcase-row-team")
         rowDuration = showcaseDoc.getElementById("showcase-row-duration")
-        rowTechnology = showcaseDoc.getElementById("showcase-row-technology")
+        rowTools = showcaseDoc.getElementById("showcase-row-tools")
         rowPlatforms = showcaseDoc.getElementById("showcase-row-platforms")
         rowTags = showcaseDoc.getElementById("showcase-row-tags")
         role = showcaseDoc.getElementById("showcase-role")
         teamSize = showcaseDoc.getElementById("showcase-team-size")
         duration = showcaseDoc.getElementById("showcase-duration")
-        technology = showcaseDoc.getElementById("showcase-technology")
+        tools = showcaseDoc.getElementById("showcase-tools")
         platforms = showcaseDoc.getElementById("showcase-platforms")
         tags = showcaseDoc.getElementById("showcase-tags")
         description = showcaseDoc.getElementById("showcase-description")
@@ -62,13 +62,13 @@ function clearShowcase()
     if (rowRole) rowRole.style.display = "none"
     if (rowTeam) rowTeam.style.display = "none"
     if (rowDuration) rowDuration.style.display = "none"
-    if (rowTechnology) rowTechnology.style.display = "none"
+    if (rowTools) rowTools.style.display = "none"
     if (rowPlatforms) rowPlatforms.style.display = "none"
     if (rowTags) rowTags.style.display = "none"
     if (role) role.innerText = ""
     if (teamSize) teamSize.innerText = ""
     if (duration) duration.innerText = ""
-    if (technology) technology.innerText = ""
+    if (tools) tools.innerText = ""
     if (platforms) platforms.innerText = ""
     if (tags) tags.innerText = ""
     if (description) description.innerText = ""
@@ -121,9 +121,9 @@ function fillShowcase(game)
     if (duration) duration.innerText = durationText
     if (rowDuration) rowDuration.style.display = durationText ? "block" : "none"
 
-    var technologyText = Array.isArray(game.technology) ? game.technology.join(', ') : (game.technology || game.engine || "")
-    if (technology) technology.innerText = technologyText
-    if (rowTechnology) rowTechnology.style.display = technologyText ? "block" : "none"
+    var toolsText = Array.isArray(game.tools) ? game.tools.join(', ') : (game.tools || game.engine || "")
+    if (tools) tools.innerText = toolsText
+    if (rowTools) rowTools.style.display = toolsText ? "block" : "none"
 
     var platformsText = Array.isArray(game.platforms) ? game.platforms.join(', ') : (game.platforms || "")
     if (platforms) platforms.innerText = platformsText
