@@ -12,5 +12,67 @@ html {
 }
 
 #showcase-title {
-    background-color: var(--speech-bubble-color);
+    font-size: 1.4em;
+    text-align: left;
+    margin-bottom: 0.3em;
 }
+
+#showcase-card {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8em;
+    padding: 0.5em;
+    box-sizing: border-box;
+}
+
+#showcase-head {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7em;
+}
+
+#showcase-thumbnail {
+    width: 160px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 0.6em;
+    border: 2px solid var(--link-color);
+}
+
+#showcase-head-meta {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25em;
+}
+
+.showcase-meta-row {
+    font-size: 0.75em;
+}
+
+#showcase-description {
+    text-align: left;
+    font-size: 0.85em;
+    line-height: 1.3em;
+    margin-top: 0.5em;
+}
+
+#showcase-links {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#showcase-links > a:hover {
+    text-decoration: none;
+    color: var(--link-hover-color);
+}
+
+#showcase-links > a:link, a:visited, a:active {
+    text-decoration: none;
+    color: var(--link-color);
+}
+
