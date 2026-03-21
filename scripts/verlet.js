@@ -10,10 +10,10 @@ var colInfo  = { normal: {x:0,y:0} }
 var floorOffset = 0
 
 var bounce = 0.9
-var gravity = 0.5
+var gravity = 0.25
 var friction = 0.999
 
-addEventListener("update", args => updateVerlet())
+addEventListener("fixedupdate", args => updateVerlet())
 
 window.onresize = function()
 {
