@@ -88,14 +88,24 @@ var me =
                 y < this.height + this.y + this.margin &&
                 x > this.x - this.margin && 
                 y > this.y - this.margin 
+    },
+
+    renderBackground: function(context, x, y)
+    {        
+        var mid = this.width/2
+        var offsetX = -100 
+        var offsetY = 150
+        context.drawImage(this.feedme, x - mid + offsetX, y + offsetY, this.feedme.width / 1.5, this.feedme.height / 1.5)
     }
 }
 
 loadImage("imgs/metop.png").then(img => me.top = img)
 loadImage("imgs/mebottom.png").then(img => me.bottom = img)
+loadImage("imgs/feed_me.png").then(img => me.feedme = img)
 
 addEventListener("render", args => me.render(args.context, width/2, 10))
 addEventListener("rendershadow", args => me.render(args.context, width/2, 10))
+addEventListener("render", args => me.renderBackground(args.context, width/2, 10))
 addEventListener("update", args => animate(args.delta))
 addEventListener("startwrite", args => curAnimation = Anim.TALK)
 addEventListener("endwrite", args => curAnimation = Anim.IDLE)
