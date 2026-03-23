@@ -113,23 +113,23 @@ function fillShowcase(game)
 
     var hasRole = !!game.role
     if (role) role.innerText = game.role || ""
-    if (rowRole) rowRole.style.display = hasRole ? "block" : "none"
+    if (rowRole) rowRole.style.display = hasRole ? "flex" : "none"
 
     var hasTeam = game.teamSize !== undefined && game.teamSize !== null && game.teamSize !== ""
     if (teamSize) teamSize.innerText = hasTeam ? game.teamSize : ""
-    if (rowTeam) rowTeam.style.display = hasTeam ? "block" : "none"
+    if (rowTeam) rowTeam.style.display = hasTeam ? "flex" : "none"
 
     var durationText = game.duration || ""
     if (duration) duration.innerText = durationText
-    if (rowDuration) rowDuration.style.display = durationText ? "block" : "none"
+    if (rowDuration) rowDuration.style.display = durationText ? "flex" : "none"
 
     var toolsText = Array.isArray(game.tools) ? game.tools.join(', ') : (game.tools || game.engine || "")
     if (tools) tools.innerText = toolsText
-    if (rowTools) rowTools.style.display = toolsText ? "block" : "none"
+    if (rowTools) rowTools.style.display = toolsText ? "flex" : "none"
 
     var descriptionText = game.description || game.summary || ""
     if (description) description.innerText = descriptionText
-    description.style.display = descriptionText ? "block" : "none"
+    description.style.display = descriptionText ? "flex" : "none"
 
     if (tagsContainer) {
         tagsContainer.innerHTML = ''
