@@ -4,13 +4,13 @@ html {
 
 #speech-body {
     overflow-y:auto;
-    font-size: 3em;
     background: var(--speech-bubble-color);
     text-align: center;
     display: flex;
     flex-direction: column;
     height: 100%; 
     justify-content: space-between;
+    font-size: 3em;
 }
 
 #speech-text {
@@ -27,7 +27,7 @@ html {
     margin-top: .5em;
 }
 
-@media (orientation: portrait) {
+@media (orientation: portrait) and (min-resolution: 2dppx) {
   #speech-body {
     font-size: 4em;
   }
