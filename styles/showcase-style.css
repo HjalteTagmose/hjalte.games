@@ -64,12 +64,16 @@ body {
 }
 
 #showcase-head {
+    min-width: 0;
     display: flex;
-    align-items: flex-start;
-    background-color: var(--showcase-head-color);
+    align-items: center;
+    background-color: yellow;
+    /* background-color: var(--showcase-head-color); */
+    max-height: 80%;
 }
 
 #showcase-top {
+    max-height: 33%;
     font-family: infoFont;
     padding: 30px 30px 10px 30px;
     background-color: var(--showcase-head-color);
@@ -81,17 +85,17 @@ body {
 }
 
 #showcase-thumbnail {
-    width: 50%;
-    aspect-ratio: 1;
-    object-fit: cover;
+    overflow: auto;
+    object-fit: scale-down;
+    max-width: 100%;
+    height: auto;
     border-radius: 15px;
 }
 
 #showcase-head-meta {
-    padding: 0px 0px 0px 20px;
+    padding: 0px 0px 0px 25px;
     text-align: left;
-    display: flex;
-    flex-direction: column;
+    max-height: 100%;
 }
 
 .showcase-meta-row {

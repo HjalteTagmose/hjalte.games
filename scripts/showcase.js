@@ -59,10 +59,10 @@ jQuery(document).ready(function() {
 
 function clearShowcase()
 {
-    if (thumbnail) {
-        thumbnail.src = ""
-        thumbnail.style.display = "none"
-    }
+    // if (thumbnail) {
+    //     thumbnail.src = ""
+    //     thumbnail.style.display = "none"
+    // }
     if (rowRole) rowRole.style.display = "none"
     if (rowTeam) rowTeam.style.display = "none"
     if (rowDuration) rowDuration.style.display = "none"
@@ -103,14 +103,12 @@ function fillShowcase(game)
         return
 
     if (thumbnail) {
-        if (game.imgPath) {
-            thumbnail.src = game.imgPath
-            thumbnail.style.display = "block"
-        } else {
-            thumbnail.src = ""
-            thumbnail.style.display = "none"
-        }
-        thumbnail.alt = (game.name ? game.name + " thumbnail" : "game thumbnail")
+        // if (game.imgPath) {
+        //     thumbnail.src = game.imgPath
+        // } else {
+        //     thumbnail.src = ""
+        //     thumbnail.style.display = "none"
+        // }
     }
 
     var hasRole = !!game.role
