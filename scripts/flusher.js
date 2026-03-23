@@ -8,19 +8,23 @@ var handleStart = 0;
 var flushing = false
 
 async function updateFlusher() {
-    renderFlusher();
+    renderFlusher()
     if (handle.path[0].y > handleStart+incr*5 && !flushing)
         await flush()
 }
 
 async function flush()
 {
-    if (flushing) return
+    if (flushing) 
+        return
+    
     flushing = true
-    playSound('flush')
+    // playSound('flush')
+    
     await clearBoxes()
     pinBox(handle, false)
     handle.hidden = false
+    
     await sleep(4000)
     flushing = false
 }
@@ -88,6 +92,19 @@ function renderFlusher()
         }
     }
     context.stroke();
+}
+
+async function clearBoxes() 
+{
+    floorOffset = 50000
+    await sleep(1200)
+    floorOffset = 0 
+    for (let i = 0; i < boxes.length; i++)
+    {
+        var b = boxes[i];
+        b.hidden = true
+        pinBox(b, true)
+    }
 }
 
 createFlusher();
