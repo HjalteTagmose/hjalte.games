@@ -25,8 +25,8 @@ function init() {
         el.teamSize = showcaseDoc.getElementById("showcase-team-size");
         el.duration = showcaseDoc.getElementById("showcase-duration");
         el.tools = showcaseDoc.getElementById("showcase-tools");
-        el.description = showcaseDoc.getElementById("showcase-description");
 
+        el.description = showcaseDoc.getElementById("showcase-description");
         el.tags = showcaseDoc.getElementById("showcase-tags");
         el.links = showcaseDoc.getElementById("showcase-links");
 

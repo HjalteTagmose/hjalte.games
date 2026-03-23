@@ -62,10 +62,20 @@ a:hover {
     display: block;
     position: absolute; 
     background: var(--speech-bubble-color);
-    top: 10%; bottom: 10%;
-    left: 25%; right: 25%;
+    /* top: 10%; bottom: 10%;
+    left: 10%; right: 10%; */
+  
+    aspect-ratio: 9 / 14;
+    width: min(90vw, calc(90vh * 9 / 14));
+    height: min(90vh, calc(90vw * 14 / 9));
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    /* width: 90%;
+    height: 90%; */
     border-radius: 15px;
-    padding: 0px;
     box-shadow: 20px 20px 20px var(--shadow-color);
 }
 
