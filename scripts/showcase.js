@@ -1,169 +1,166 @@
-var showcasing = false
-var showcaseFrame = document.getElementById("showcase-frame");
-var showcase
-var showcaseCloseButton
-var showcaseDoc
-var thumbnail
-var rowRole
-var rowTeam
-var rowDuration
-var rowTools
-var role
-var teamSize
-var duration
-var tools
-var description
-var tagsContainer
-var linksContainer
+const showcaseFrame = document.getElementById("showcase-frame");
+let showcasing = false;
 
-hideGame()
-jQuery(document).ready(function() {
-    showcase = $('#showcase').get(0)
+const el = {};
+let showcase, showcaseDoc;
+
+init();
+
+function init() {
+    showcase = document.getElementById("showcase");
 
     function grabElements() {
-        if (!showcase || !showcase.contentWindow || !showcase.contentWindow.document) 
-            return false
+        if (!showcase?.contentWindow?.document) return false;
 
-        showcaseDoc = showcase.contentWindow.document
-        thumbnail = showcaseDoc.getElementById("showcase-thumbnail")
-        rowRole = showcaseDoc.getElementById("showcase-row-role")
-        rowTeam = showcaseDoc.getElementById("showcase-row-team")
-        rowDuration = showcaseDoc.getElementById("showcase-row-duration")
-        rowTools = showcaseDoc.getElementById("showcase-row-tools")
-        role = showcaseDoc.getElementById("showcase-role")
-        teamSize = showcaseDoc.getElementById("showcase-team-size")
-        duration = showcaseDoc.getElementById("showcase-duration")
-        tools = showcaseDoc.getElementById("showcase-tools")
-        description = showcaseDoc.getElementById("showcase-description")
-        tagsContainer = showcaseDoc.getElementById("showcase-tags")
-        linksContainer = showcaseDoc.getElementById("showcase-links")
-        showcaseCloseButton = showcaseDoc.getElementById('showcase-close-btn')
-    
-        showcaseCloseButton.addEventListener('click', function() {
-            hideGame()
-        });
+        showcaseDoc = showcase.contentWindow.document;
 
-        return true
+        el.thumbnail = showcaseDoc.getElementById("showcase-thumbnail");
+
+        el.rowRole = showcaseDoc.getElementById("showcase-row-role");
+        el.rowTeam = showcaseDoc.getElementById("showcase-row-team");
+        el.rowDuration = showcaseDoc.getElementById("showcase-row-duration");
+        el.rowTools = showcaseDoc.getElementById("showcase-row-tools");
+
+        el.role = showcaseDoc.getElementById("showcase-role");
+        el.teamSize = showcaseDoc.getElementById("showcase-team-size");
+        el.duration = showcaseDoc.getElementById("showcase-duration");
+        el.tools = showcaseDoc.getElementById("showcase-tools");
+        el.description = showcaseDoc.getElementById("showcase-description");
+
+        el.tags = showcaseDoc.getElementById("showcase-tags");
+        el.links = showcaseDoc.getElementById("showcase-links");
+
+        const closeBtn = showcaseDoc.getElementById("showcase-close-btn");
+        if (closeBtn && !closeBtn._bound) {
+            closeBtn.addEventListener("click", hideGame);
+            closeBtn._bound = true;
+        }
+
+        return true;
     }
 
     if (!grabElements()) {
-        showcase.addEventListener('load', function() {
-            grabElements()
-            clearShowcase()
-        })
+        showcase.addEventListener("load", () => {
+            grabElements();
+            resetContainers();
+        });
     } else {
-        clearShowcase()
+        resetContainers();
     }
-})
 
+    hideGame();
+}
 
-function clearShowcase()
-{
-    // if (thumbnail) {
-    //     thumbnail.src = ""
-    //     thumbnail.style.display = "none"
-    // }
-    if (rowRole) rowRole.style.display = "none"
-    if (rowTeam) rowTeam.style.display = "none"
-    if (rowDuration) rowDuration.style.display = "none"
-    if (rowTools) rowTools.style.display = "none"
-    if (role) role.innerText = ""
-    if (teamSize) teamSize.innerText = ""
-    if (duration) duration.innerText = ""
-    if (tools) tools.innerText = ""
-    if (description) description.innerText = ""
-    if (tagsContainer) {
-        tagsContainer.innerText = ""
-        tagsContainer.style.display = "none"
-    }
-    if (linksContainer) {
-        linksContainer.innerHTML = ""
-        linksContainer.style.display = "none"
+function setField(value, textEl, rowEl) {
+    const has = !!value;
+    if (textEl) textEl.textContent = has ? value : "";
+    if (rowEl) rowEl.style.display = has ? "flex" : "none";
+}
+
+function setThumbnail(src) {
+    if (!el.thumbnail) return;
+
+    if (src) {
+        el.thumbnail.src = src;
+        el.thumbnail.style.display = "block";
+    } else {
+        el.thumbnail.src = "";
+        el.thumbnail.style.display = "none";
     }
 }
 
-function showGame(game)
-{
-    // alert("SHOW GAME: " + game.name)
-    hideSpeech()
-    showcaseFrame.style = "display: block;"
-    showcasing = true
-    clearShowcase()
-    fillShowcase(game)
+function resetContainers() {
+    if (el.tags) {
+        el.tags.innerHTML = "";
+        el.tags.style.display = "none";
+    }
+    if (el.links) {
+        el.links.innerHTML = "";
+        el.links.style.display = "none";
+    }
 }
 
-function hideGame()
-{
-    showcaseFrame.style = "display: none;"
+function showGame(game) {
+    if (!game) return;
+
+    hideSpeech?.();
+
+    showcasing = true;
+    showcaseFrame.style.display = "block";
+
+    fillShowcase(game);
 }
 
-function fillShowcase(game)
-{
-    if (!game) 
-        return
+function hideGame() {
+    showcasing = false;
+    showcaseFrame.style.display = "none";
+}
 
-    if (thumbnail) {
-        // if (game.imgPath) {
-        //     thumbnail.src = game.imgPath
-        // } else {
-        //     thumbnail.src = ""
-        //     thumbnail.style.display = "none"
-        // }
+function fillShowcase(game) {
+    setThumbnail(game.imgPath);
+    setField(game.role, el.role, el.rowRole);
+    setField(game.teamSize, el.teamSize, el.rowTeam); 
+    setField(game.duration, el.duration, el.rowDuration);
+
+    const toolsText = Array.isArray(game.tools)
+        ? game.tools.join(", ")
+        : (game.tools || game.engine || "");
+    setField(toolsText, el.tools, el.rowTools);
+
+    const desc = game.description || game.summary || "";
+    if (el.description) {
+        el.description.textContent = desc;
+        el.description.style.display = desc ? "flex" : "none";
     }
 
-    var hasRole = !!game.role
-    if (role) role.innerText = game.role || ""
-    if (rowRole) rowRole.style.display = hasRole ? "flex" : "none"
+    // tags
+    if (el.tags) {
+        el.tags.innerHTML = "";
 
-    var hasTeam = game.teamSize !== undefined && game.teamSize !== null && game.teamSize !== ""
-    if (teamSize) teamSize.innerText = hasTeam ? game.teamSize : ""
-    if (rowTeam) rowTeam.style.display = hasTeam ? "flex" : "none"
+        if (Array.isArray(game.tags) && game.tags.length) {
+            const frag = showcaseDoc.createDocumentFragment();
 
-    var durationText = game.duration || ""
-    if (duration) duration.innerText = durationText
-    if (rowDuration) rowDuration.style.display = durationText ? "flex" : "none"
+            for (const tag of game.tags) {
+                const span = showcaseDoc.createElement("span");
+                span.className = "showcase-tag";
+                span.textContent = tag;
+                frag.appendChild(span);
+            }
 
-    var toolsText = Array.isArray(game.tools) ? game.tools.join(', ') : (game.tools || game.engine || "")
-    if (tools) tools.innerText = toolsText
-    if (rowTools) rowTools.style.display = toolsText ? "flex" : "none"
-
-    var descriptionText = game.description || game.summary || ""
-    if (description) description.innerText = descriptionText
-    description.style.display = descriptionText ? "flex" : "none"
-
-    if (tagsContainer) {
-        tagsContainer.innerHTML = ''
-        if (Array.isArray(game.tags) && game.tags.length > 0) {
-            game.tags.forEach(tag => {
-                var spanTag = showcaseDoc.createElement('span')
-                spanTag.className = 'showcase-tag'
-                spanTag.innerText = tag
-                tagsContainer.appendChild(spanTag)
-            })
-            tagsContainer.style.display = 'flex'
+            el.tags.appendChild(frag);
+            el.tags.style.display = "flex";
         } else {
-            tagsContainer.style.display = 'none'
+            el.tags.style.display = "none";
         }
     }
 
-    linksContainer.innerHTML = ""
-    var linkItems = []
-    if (Array.isArray(game.links) && game.links.length > 0) {
-        linkItems = game.links
-    }
+    // links
+    if (el.links) {
+        el.links.innerHTML = "";
 
-    if (linkItems.length === 0) {
-        linksContainer.style.display = "none"
-    } else {
-        linksContainer.style.display = "flex"
-        linkItems.forEach(item => {
-            var a = showcaseDoc.createElement('a')
-            a.className = "showcase-link"
-            a.href = item.url || item
-            a.target = "_blank"
-            a.rel = "noopener noreferrer"
-            a.innerText = item.text || item.url || item
-            linksContainer.appendChild(a)
-        })
+        const items = Array.isArray(game.links) ? game.links : [];
+
+        if (items.length) {
+            const frag = showcaseDoc.createDocumentFragment();
+
+            for (const item of items) {
+                const url = item.url || item;
+                const text = item.text || url;
+
+                const a = showcaseDoc.createElement("a");
+                a.className = "showcase-link";
+                a.href = url;
+                a.target = "_blank";
+                a.rel = "noopener noreferrer";
+                a.textContent = text;
+
+                frag.appendChild(a);
+            }
+
+            el.links.appendChild(frag);
+            el.links.style.display = "flex";
+        } else {
+            el.links.style.display = "none";
+        }
     }
 }
