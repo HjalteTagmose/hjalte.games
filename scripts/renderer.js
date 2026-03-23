@@ -47,11 +47,14 @@ function render()
         if (b.hidden) continue
 
         // Render shadow
-        shadowContext.save()
-        shadowContext.translate(b.path[0].x, b.path[0].y)
-        shadowContext.rotate(angle)
-        shadowContext.fillRect(4, 4, w-8, h-8)
-        shadowContext.restore()
+        if (!b.noShadow)
+        {
+            shadowContext.save()
+            shadowContext.translate(b.path[0].x, b.path[0].y)
+            shadowContext.rotate(angle)
+            shadowContext.fillRect(4, 4, w-8, h-8)
+            shadowContext.restore()
+        }
 
         // Render box
         context.save()

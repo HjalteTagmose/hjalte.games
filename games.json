@@ -2,15 +2,6 @@
   "sizeMultiplier": 1.25,
   "boxes": [
     {
-      "name": "Szrot",
-      "imgPath": "thumbnails/szrot.png",
-      "links": [ { "text": "Game Link", "url": "https://szrotgame.com/" } ],
-      "date": "N/A",
-			"platforms": [ "Windows" ],
-      "tags": [ "All", "Current", "3D", "2021", "2022", "2023", "Szrot" ],
-      "size": 200
-    },
-    {
       "name": "Munchy Mammals",
       "imgPath": "thumbnails/munchy-mammals.png",
       "links": [ { "text": "Game Link", "url": "https://munchymammals.com/" } ],
@@ -23,6 +14,15 @@
       "tags": [ "All", "2D", "2020", "2023", "2024", "Munchy" ],
       "size": 200,
       "description": "Munchy Mammals was my first commercial game. \n\nThe game was published by Spelkollektivet, where I stayed for the entire development. It was an incredible learning opportunity."
+    },
+    {
+      "name": "Szrot",
+      "imgPath": "thumbnails/szrot.png",
+      "links": [ { "text": "Game Link", "url": "https://szrotgame.com/" } ],
+      "date": "N/A",
+			"platforms": [ "Windows" ],
+      "tags": [ "All", "Current", "3D", "2021", "2022", "2023", "Szrot" ],
+      "size": 200
     },
     {
       "name": "Sonar Scout",

@@ -143,10 +143,10 @@ body {
 }
 
 @media (min-resolution: 2dppx) {
-  #showcase-description {
-    font-size: 1.5em;
-  }
-  #showcase-links {
-    font-size: 2em;
-  }
+    #showcase-description {
+        font-size: 1.5em;
+    }
+    #showcase-links {
+        font-size: 2em;
+    }
 }
