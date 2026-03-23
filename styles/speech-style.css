@@ -26,3 +26,12 @@ html {
 #speech-options > a {
     margin-top: .5em;
 }
+
+@media (orientation: portrait) {
+  #speech-body {
+    font-size: 4em;
+  }
+  #speech-options {
+    font-size: 1.5em;
+  }
+}

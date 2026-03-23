@@ -50,11 +50,18 @@ a:hover {
     display: block;
     position: absolute; 
     background: var(--speech-bubble-color);
-    top: 20%; bottom: 20%;
+    top: 250px; bottom: 5%;
     left: 25%; right: 25%;
     border-radius: 15px;
     padding: 20px;
     box-shadow: 20px 20px 20px var(--shadow-color);
+}
+
+@media (orientation: portrait) {
+  #speech-frame {
+    left: 10%;
+    right: 10%;
+  }
 }
 
 #showcase-frame {

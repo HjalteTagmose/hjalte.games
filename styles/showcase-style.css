@@ -39,10 +39,12 @@ body {
 }
 
 #showcase-head-meta {
+    background-color: tomato;
     text-align: left;
     max-height: 100%;
     margin-left: 25px;
     align-items: center;
+    flex: 1; 
 }
 
 .showcase-meta-row {
@@ -139,4 +141,13 @@ body {
 #showcase-close-btn svg {
     width: 1.05rem;
     height: 1.05rem;
+}
+
+@media (orientation: portrait) {
+  #showcase-description {
+    font-size: 1.5em;
+  }
+  #showcase-links {
+    font-size: 1.5em;
+  }
 }
