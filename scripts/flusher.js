@@ -42,7 +42,6 @@ async function createFlusher() {
     }
 
     for (let i = 0; i < linkCount; i++) {
-        console.log(prev.y)
         p = {
             x: x,
             y: prev.y+incr,
