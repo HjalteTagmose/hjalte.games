@@ -17,8 +17,8 @@ addEventListener("fixedupdate", args => updateVerlet())
 
 window.onresize = function()
 {
-    width  = canvas.width  = shadowCanvas.width  = window.innerWidth  - 8
-    height = canvas.height = shadowCanvas.height = window.innerHeight - 8
+    width  = canvas.width  = shadowCanvas.width  = window.innerWidth  - 0
+    height = canvas.height = shadowCanvas.height = window.innerHeight - 0
 }
 
 function updateVerlet()

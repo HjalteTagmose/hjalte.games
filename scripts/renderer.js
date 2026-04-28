@@ -73,23 +73,62 @@ function render()
         
         // renderDebug(b)
     }
+
+    // Test
+    for (let i = 0; i < sticks.length; i++)
+    {
+        renderStick(sticks[i])
+    }
 }
 
-function renderDebug(b)
+// function renderDebug(b)
+// {
+//     context.lineWidth = 5
+    
+//     // Left
+//     context.strokeStyle = "red"
+//     context.beginPath()
+//     context.moveTo(b.path[3].x, b.path[3].y)
+//     context.lineTo(b.path[0].x, b.path[0].y)
+//     context.stroke()
+
+//     // Top
+//     context.strokeStyle = "blue"
+//     context.beginPath()
+//     context.moveTo(b.path[0].x, b.path[0].y)
+//     context.lineTo(b.path[1].x, b.path[1].y)
+//     context.stroke()
+    
+//     // center
+//     context.fillStyle="magenta"
+//     context.fillRect(b.center.x, b.center.y, 15,15)
+// }
+
+function renderDebug(el)
 {
-    context.strokeStyle = "red"
     context.lineWidth = 5
+    context.strokeStyle = "black"
+    
+    for (let i = 0; i < el.path.length; i++) {
+        let start = i
+        let end = (i+1) % el.path.length
+        
+        context.beginPath()
+        context.moveTo(el.path[start].x, el.path[start].y)
+        context.lineTo(el.path[end].x, el.path[end].y)
+        context.stroke()
+    }
+}
+
+function renderStick(s)
+{
+    context.lineWidth = 5
+    context.strokeStyle = "black"
+
     context.beginPath()
-    context.moveTo(b.path[3].x, b.path[3].y)
-    context.lineTo(b.path[0].x, b.path[0].y)
+    context.moveTo(s.p0.x, s.p0.y)
+    context.lineTo(s.p1.x, s.p1.y)
     context.stroke()
-    context.beginPath()
-    context.moveTo(b.path[0].x, b.path[0].y)
-    context.lineTo(b.path[1].x, b.path[1].y)
-    context.strokeStyle = "blue"
-    context.stroke()
-    context.fillStyle="magenta"
-    context.fillRect(b.center.x, b.center.y, 15,15)
 }
 
 function roundedImage(x, y, width, height, radius)
