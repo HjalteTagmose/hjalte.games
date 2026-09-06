@@ -9,6 +9,8 @@ var curWrite
 var isWriting = false
 var skip = false
 
+const TEXT_WAIT_MS = 10
+
 jQuery(document).ready(function() {
     iframe  = $('#speechbubble').get(0)
     text    = iframe.contentWindow.document.getElementById("speech-text")
@@ -33,8 +35,12 @@ function select(e)
 {
     var element = e.target || e.srcElement;
 
-    if(element.tagName != 'A')
+    if (element.tagName != 'A')
         return false
+
+    if (element.classList.contains("inline"))
+        return true
+
     if (element.target)
         return true
 
@@ -78,7 +84,7 @@ async function fillText(content)
                 for (let c = 0; c < newText.length; c++) 
                 {
                     if (c > 0)
-                        await wait(10)
+                        await wait(TEXT_WAIT_MS)
                     text.append(newText[c])
                 }
                 break
@@ -86,7 +92,7 @@ async function fillText(content)
             {
                 if (!node.classList.contains("inline"))
                     break 
-                
+
                 const link = document.createElement('a');
                 link.href = node.href;
                 link.className = node.className;
@@ -99,7 +105,7 @@ async function fillText(content)
                 for (let c = 0; c < linkText.length; c++)
                 {
                     if (c > 0)
-                        await wait(10);
+                        await wait(TEXT_WAIT_MS);
 
                     link.append(linkText[c]);
                 }
