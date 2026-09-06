@@ -82,6 +82,31 @@ async function fillText(content)
                     text.append(newText[c])
                 }
                 break
+            case 'A':
+            {
+                if (!node.classList.contains("inline"))
+                    break 
+                
+                const link = document.createElement('a');
+                link.href = node.href;
+                link.className = node.className;
+
+                text.append(" ")
+                text.appendChild(link);
+
+                const linkText = node.textContent;
+
+                for (let c = 0; c < linkText.length; c++)
+                {
+                    if (c > 0)
+                        await wait(10);
+
+                    link.append(linkText[c]);
+                }
+                text.append(" ")
+
+                break;
+            }
             case 'BR': 
                 const linebreak = document.createElement("br")
                 text.appendChild(linebreak)
@@ -106,12 +131,12 @@ async function fillText(content)
 
 function fillOptions(content)
 {
-    let links = content.getElementsByTagName('a');
+    let links = [...content.querySelectorAll('a:not(.inline)')];
     let linkCount = links.length
 
     for (var i = 0; i < linkCount; i++) 
     {
-        let link = links[0]
+        let link = links[i]
         options.append(link)
     }
 }
