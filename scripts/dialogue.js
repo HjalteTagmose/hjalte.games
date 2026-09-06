@@ -18,6 +18,8 @@ jQuery(document).ready(function() {
     
     iframe.contentWindow.document.onclick = onclick
     curWrite = write("intro")
+
+    replaceTags()
 });
 
 function onclick(e)
@@ -44,10 +46,43 @@ function select(e)
     if (element.target)
         return true
 
+    if (element.href.includes('puke')) 
+    {
+        var tag = element.href.match(/puke-(?<tag>.*)/).groups.tag
+        pukeByTag(tag)
+        return false
+    }
+
     let id = e.target.href.replace(/.*\//, "")
     curWrite = write(id)
     return false
 }
+
+function replaceTags(content)
+{
+    var nodes = content.childNodes;
+    for(var i = 0; i < nodes.length; i++)
+    {
+        const node = nodes[i]           
+        
+        if (node.nodeName == '#text')
+        {
+            let newText = node.nodeValue.trim()
+            matches = newText.matchAll(/tag#(?<tag>\S*)/g)
+
+            for (const match of matches) {
+                const tag = match.groups.tag
+                const junk = match[0]
+                newText = newText.replace(junk, countTag(tag)+"")
+                console.log("Tag: " + tag)
+            }
+    
+            node.nodeValue = newText
+        }
+    }
+
+    return content
+} 
 
 async function write(id)
 {
@@ -58,6 +93,8 @@ async function write(id)
 
     let div = iframe.contentWindow.document.getElementById(id)
     let content = div.cloneNode(true)
+
+    content = replaceTags(content)
     
     await fillText(content)
     fillOptions(content)
@@ -93,21 +130,21 @@ async function fillText(content)
                 if (!node.classList.contains("inline"))
                     break 
 
-                const link = document.createElement('a');
+                const link = document.createElement('a')
                 link.href = node.href;
-                link.className = node.className;
+                link.className = node.className
 
                 text.append(" ")
-                text.appendChild(link);
+                text.appendChild(link)
 
-                const linkText = node.textContent;
+                const linkText = node.textContent
 
                 for (let c = 0; c < linkText.length; c++)
                 {
                     if (c > 0)
-                        await wait(TEXT_WAIT_MS);
+                        await wait(TEXT_WAIT_MS)
 
-                    link.append(linkText[c]);
+                    link.append(linkText[c])
                 }
                 text.append(" ")
 

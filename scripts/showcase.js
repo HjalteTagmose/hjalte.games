@@ -83,6 +83,12 @@ function resetContainers() {
 function showGame(game) {
     if (!game) return;
 
+    if (game.tags.includes('flusher'))
+    {
+        write('flusher')
+        return
+    }
+
     hideSpeech?.();
 
     showcasing = true;

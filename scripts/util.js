@@ -55,3 +55,16 @@ function pinBox(box, pin)
     box.path[2].pinned = pin;
     box.path[3].pinned = pin;
 }
+
+function countTag(tag) {
+    var total = 0
+    for (let i = 0; i < boxes.length; i++)
+    {
+        var b = boxes[i]
+        if (b.game.tags.includes(tag))
+        {
+            total++
+        }
+    }
+    return total
+}
